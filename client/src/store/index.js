@@ -1,9 +1,11 @@
 import { createStore } from 'redux';
 
-import reducer from '../reducers'
+import reducer from '../reducers';
 
 const initialState = {
-
+  user: {
+    authorized: false,
+  },
 };
 
 const store = createStore(reducer, initialState);

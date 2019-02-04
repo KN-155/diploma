@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 
+import { createGlobalStyle } from 'styled-components';
 import App from './components/App';
-import store from './store'
-
-import { createGlobalStyle } from 'styled-components'
+import store from './store';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
@@ -25,9 +24,10 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-
 ReactDOM.render(
-    <Provider store={store}>
-        <GlobalStyle/>
-        <App />
-    </Provider>, document.getElementById('root'));
+  <Provider store={store}>
+    <GlobalStyle />
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);
