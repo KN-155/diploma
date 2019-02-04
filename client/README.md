@@ -1,5 +1,5 @@
 ## To do: [Trello](https://trello.com/b/InitOpCb/diploma)
-###Run:
+### Run:
 
 ### `npm i`
 ### `npm start`
