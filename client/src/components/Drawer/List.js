@@ -6,20 +6,19 @@ const StyledList = styled.ul`
   list-style-type: none;
 `;
 
-const List = ({ items, close, onLogin, onLogout }) => (
+const List = ({ items, close, onLogout }) => (
   <StyledList>
-    {items.map((item, i) => (
-      <ListItem
-        to={item.url}
-        key={i}
-        onClick={() => {
-          eval(item.method);
-          close();
-        }}
-      >
-        {item.title}
-      </ListItem>
-    ))}
+    {items.map((item, i) =>
+      item.url !== '/logout' ? (
+        <ListItem to={item.url} key={i} onClick={close}>
+          {item.title}
+        </ListItem>
+      ) : (
+        <ListItem to="/login" onClick={() => {onLogout(); close();}} key={i}>
+          {item.title}
+        </ListItem>
+      ),
+    )}
   </StyledList>
 );
 

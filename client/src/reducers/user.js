@@ -1,13 +1,11 @@
-import { SIGN_IN, SIGN_OUT } from '../actions';
+import { SET_USER, LOGOUT } from '../actions';
 
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case SIGN_IN:
-      return { ...state, authorized: true };
-
-    case SIGN_OUT:
-      return { ...state, authorized: false };
-
+    case SET_USER:
+      return action.user;
+    case LOGOUT:
+      return null;
     default:
       return state;
   }

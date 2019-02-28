@@ -22,13 +22,12 @@ const SideNav = styled.nav`
   flex-direction: column;
 `;
 
-const AppBar = ({ visible, user, close, onLogin, onLogout }) => (
+const AppBar = ({ visible, user, close, onLogout }) => (
   <SideNav visible={visible}>
     <List items={MAIN_LINKS} close={close} />
     <List
-      items={user.authorized ? USER_LINKS : GUEST_LINKS}
+      items={user ? USER_LINKS : GUEST_LINKS}
       close={close}
-      onLogin={onLogin}
       onLogout={onLogout}
     />
   </SideNav>

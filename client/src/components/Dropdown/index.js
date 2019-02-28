@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import List from './List';
+import List from '../Drawer/List';
 
 import { GUEST_LINKS, USER_LINKS } from '../../constants';
 
@@ -16,14 +16,14 @@ const StyledDropdown = styled.div`
   border-top: 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   padding: 10px 0;
+  background-color: #fff;
 `;
 
-const Dropdown = ({ visible, close, user, onLogin, onLogout }) => (
+const Dropdown = ({ visible, close, user, onLogout }) => (
   <StyledDropdown visible={visible}>
     <List
-      items={user.authorized ? USER_LINKS : GUEST_LINKS}
+      items={user ? USER_LINKS : GUEST_LINKS}
       close={close}
-      onLogin={onLogin}
       onLogout={onLogout}
     />
   </StyledDropdown>

@@ -3,8 +3,14 @@ import { createStore } from 'redux';
 import reducer from '../reducers';
 
 const initialState = {
-  user: {
-    authorized: false,
+  user: null,
+  parking: {
+    list: [],
+  },
+  alert: {
+    active: false,
+    type: null,
+    message: null,
   },
 };
 

@@ -5,7 +5,7 @@ import Drawer from '../Drawer';
 import DarkBg from '../DarkBg';
 import Dropdown from '../Dropdown';
 
-const AppBar = ({ user, onLogin, onLogout }) => {
+const AppBar = ({ user, logoutUser }) => {
   const [visibleDrawer, changeDrawer] = useState(false);
   const [visibleDropdown, changeDropdown] = useState(false);
 
@@ -21,15 +21,13 @@ const AppBar = ({ user, onLogin, onLogout }) => {
         visible={visibleDrawer}
         close={() => changeDrawer(false)}
         user={user}
-        onLogin={onLogin}
-        onLogout={onLogout}
+        onLogout={logoutUser}
       />
       <Dropdown
         visible={visibleDropdown}
         close={() => changeDropdown(false)}
         user={user}
-        onLogin={onLogin}
-        onLogout={onLogout}
+        onLogout={logoutUser}
       />
       <DarkBg visible={visibleDrawer} changeVisibility={changeDrawer} />
     </Fragment>

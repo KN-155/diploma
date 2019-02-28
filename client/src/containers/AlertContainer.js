@@ -1,22 +1,22 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import AppBar from '../components/AppBar';
-import { logoutUser } from '../actions';
+import Alert from '../components/Alert';
+import { closeAlert } from '../actions';
 
 const mapDispatchToProps = dispatch => ({
-  logoutUser: () => dispatch(logoutUser()),
+  closeAlert: () => dispatch(closeAlert()),
 });
 
 const mapStateToProps = state => ({
-  user: state.user,
+  alert: state.alert,
 });
 
-const HeaderContainer = withRouter(
+const AlertContainer = withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps,
-  )(AppBar),
+  )(Alert),
 );
 
-export default HeaderContainer;
+export default AlertContainer;

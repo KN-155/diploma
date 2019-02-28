@@ -1,15 +1,15 @@
 export const MAIN_LINKS = [
-  { title: 'Cars', url: '/cars' },
-  { title: 'About', url: '/about' },
-  { title: 'Users', url: '/users' },
+  { title: 'Парковки', url: '/parking' },
+  { title: 'Добавить парковку', url: '/upload' },
+  { title: 'Личный кабинет', url: '/cabinet' },
 ];
 
 export const GUEST_LINKS = [
-  { title: 'Sign Up', url: '/registration', method: '' },
-  { title: 'Log In', url: '/login', method: 'onLogin()' },
+  { title: 'Регистрация', url: '/registration' },
+  { title: 'Вход', url: '/login' },
 ];
 
 export const USER_LINKS = [
-  { title: 'Profile', url: '/profile', method: '' },
-  { title: 'Log Out', url: '/logout', method: 'onLogout()' },
+  { title: 'Профиль', url: '/profile' },
+  { title: 'Выход', url: '/logout' },
 ];
