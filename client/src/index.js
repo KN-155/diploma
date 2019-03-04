@@ -4,14 +4,14 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 
 import { createGlobalStyle } from 'styled-components';
-import App from './components/App';
-import { userService } from './services';
+import AppContainer from './containers/AppContainer';
+import {userService} from './services';
 import store from './store';
-import { setUser } from './actions';
+import { setUser, setAlert, finishLoading } from './actions';
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+  @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
   * {
     margin: 0;
@@ -27,19 +27,25 @@ const GlobalStyle = createGlobalStyle`
   } 
 `;
 
-const user = JSON.parse(localStorage.getItem('user'));
-if (user) {
-  axios.defaults.headers.common['Authorization'] = user.token;
-  userService
-    .relogin()
-    .then(res => store.dispatch(setUser(res.data)))
-    .catch(err => console.log(err));
-}
+(async () => {
+  const localUser = JSON.parse(localStorage.getItem('user'));
+  if (localUser && localUser.token) {
+    axios.defaults.headers.common['Authorization'] = localUser.token;
+    const {user, success, message} = await userService.relogin();
+    if(user) {
+      store.dispatch(setUser(user))
+    }
+    store.dispatch(setAlert(success,message))
+  }
+  store.dispatch(finishLoading())
+})();
+
+
 
 ReactDOM.render(
   <Provider store={store}>
-    <GlobalStyle />
-    <App />
+    <GlobalStyle/>
+    <AppContainer/>
   </Provider>,
   document.getElementById('root'),
 );

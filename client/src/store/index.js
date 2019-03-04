@@ -12,6 +12,7 @@ const initialState = {
     type: null,
     message: null,
   },
+  loading: true,
 };
 
 const store = createStore(reducer, initialState);

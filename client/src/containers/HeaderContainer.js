@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import AppBar from '../components/AppBar';
+import { AppBar } from '../components/Header';
 import { logoutUser } from '../actions';
 
 const mapDispatchToProps = dispatch => ({

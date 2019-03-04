@@ -1,15 +1,16 @@
 export const SET_ALERT = 'SET_ALERT';
 export const CLOSE_ALERT = 'CLOSE_ALERT';
 
-export function setAlert(type, message) {
+export const setAlert = (success, message) => {
   return {
     type: SET_ALERT,
-    alertType: type,
+    success,
     message,
   };
-}
-export function closeAlert() {
+};
+
+export const closeAlert = () => {
   return {
     type: CLOSE_ALERT,
   };
-}
+};

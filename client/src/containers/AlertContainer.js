@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import Alert from '../components/Alert';
+import { Alert } from '../components/OtherElements';
 import { closeAlert } from '../actions';
 
 const mapDispatchToProps = dispatch => ({

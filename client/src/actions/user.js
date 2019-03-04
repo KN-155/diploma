@@ -1,47 +1,49 @@
-import { userService } from '../services';
+import {userService} from '../services';
 import { setAlert } from './alert';
 
 export const SET_USER = 'SET_USER';
 export const LOGOUT = 'LOGOUT';
+export const EDIT_USER = 'EDIT_USER';
 
-export function loginUser(username, password) {
-  return dispatch => {
-    userService
-      .login(username, password)
-      .then(user => {
-        dispatch(setUser(user));
-        dispatch(setAlert('success', 'Вход выполнен'));
-      })
-      .catch(function(error) {
-        dispatch(setAlert('dungarees', 'Ошибка авторизации'));
-      });
-  };
-}
-
-export function registerUser(username, password) {
-  return dispatch => {
-    userService
-      .registration(username, password)
-      .then(response => {
-        const type = response.status === 201 ? 'success' : 'dungarees';
-        dispatch(setAlert(type, response.data.message));
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  };
-}
-
-export function setUser(user) {
+export const setUser = (user) => {
   return {
     type: SET_USER,
     user,
   };
-}
+};
 
-export function logoutUser() {
+export const logoutUser = () => {
   userService.logout();
   return {
     type: LOGOUT,
   };
-}
+};
+
+export const loginUser = (username, password) => {
+  return async dispatch =>  {
+    const {user, success, message} = await userService.login(username, password);
+    if(user) {
+      dispatch(setUser(user));
+    }
+    dispatch(setAlert(success, message));
+  };
+};
+
+export const registerUser = (username, password) => {
+  return async dispatch => {
+    const { success, message } = await userService.registration(username, password);
+    dispatch(setAlert(success, message));
+    return success;
+  }
+};
+
+export const editUser = (newUser) => {
+  return async dispatch => {
+    const {user, success, message} = await userService.editProfile(newUser);
+    dispatch(setAlert(success, message));
+    if(user) {
+      dispatch(setUser(user));
+    }
+    return success;
+  }
+};

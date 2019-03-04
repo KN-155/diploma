@@ -5,7 +5,7 @@ export default function reducer(state = [], action) {
     case SET_ALERT:
       return {
         active: true,
-        type: action.alertType,
+        success: action.success,
         message: action.message,
       };
 
